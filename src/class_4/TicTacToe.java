@@ -224,7 +224,7 @@ public class TicTacToe {
         int count = 0;
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                if (i + j == ROWS - 1)
+                if (i + j == ROWS - 1) {
                     if (grid[i][j] == mark) {
                         if (isWinSequenceAchieved(++count)) {
                             return true;
@@ -232,6 +232,7 @@ public class TicTacToe {
                     } else {
                         count = 0;
                     }
+                }
             }
         }
         return false;
