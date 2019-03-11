@@ -1,17 +1,34 @@
-import class_3.GuessNumGame;
-import class_3.GuessWordGame;
-import class_3.InfixCalculator;
+import class_4.TicTacToe;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        GuessNumGame numGame = new GuessNumGame();
-        numGame.playGame();
+        TicTacToe game = new TicTacToe();
+        game.initGrid();
+        game.printGrid();
 
-        GuessWordGame wordGame = new GuessWordGame();
-        wordGame.playGame();
-
-        InfixCalculator calc = new InfixCalculator();
-        System.out.println(calc.getRet ("( 2 + ( 10 ** 2 ) )"));
+        while (true) {
+            game.makeMove("user");
+            game.printGrid();
+            if (game.isWin("user")) {
+                System.out.println("User wins!");
+                break;
+            }
+            if (game.isDraw()) {
+                System.out.println("Draw");
+                break;
+            }
+            game.makeMove("ai");
+            game.printGrid();
+            if (game.isWin("ai")) {
+                System.out.println("ai wins!");
+                break;
+            }
+            if (game.isDraw()) {
+                System.out.println("Draw");
+                break;
+            }
+        }
     }
 }
