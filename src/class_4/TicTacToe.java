@@ -55,7 +55,7 @@ public class TicTacToe {
         }
     }
 
-    public void markCell(Move move) {
+    private void markCell(Move move) {
         grid[move.row][move.col] = move.mark;
         cellMarked++;
     }
@@ -152,11 +152,11 @@ public class TicTacToe {
         return cellMarked == COLS * ROWS;
     }
 
-    boolean isWinSequenceAchieved(int count) {
+    private boolean isWinSequenceAchieved(int count) {
         return count == winningSequence;
     }
 
-    boolean isRowComplete(char[] row, char mark) {
+    private boolean isRowComplete(char[] row, char mark) {
         int count = 0;
         for (char markedField : row) {
             if (markedField == mark) {
@@ -170,7 +170,7 @@ public class TicTacToe {
         return false;
     }
 
-    boolean isAnyRowComplete(char mark) {
+    private boolean isAnyRowComplete(char mark) {
         for (int i = 0; i < COLS; i++) {
             if (isRowComplete(grid[i], mark)) {
                 return true;
@@ -179,7 +179,7 @@ public class TicTacToe {
         return false;
     }
 
-    boolean isColumnComplete(int rowIdx, char mark) {
+    private boolean isColumnComplete(int rowIdx, char mark) {
         int count = 0;
         for (int i = 0; i < COLS; i++) {
             if (grid[i][rowIdx] == mark) {
@@ -193,7 +193,7 @@ public class TicTacToe {
         return false;
     }
 
-    boolean isAnyColumComplete(char mark) {
+    private boolean isAnyColumComplete(char mark) {
         for (int i = 0; i < ROWS; i++) {
             if (isColumnComplete(i, mark)) {
                 return true;
@@ -202,7 +202,7 @@ public class TicTacToe {
         return false;
     }
 
-    boolean isRightDiagonalCompelte(char mark) {
+    private boolean isRightDiagonalCompelte(char mark) {
         int count = 0;
         for (int i = 0; i < COLS; i++) {
             for (int j = 0; j < ROWS; j++) {
@@ -220,7 +220,7 @@ public class TicTacToe {
         return false;
     }
 
-    boolean isLeftDiagonalComplete(char mark) {
+    private boolean isLeftDiagonalComplete(char mark) {
         int count = 0;
         for (int i = 0; i < COLS; i++) {
             for (int j = 0; j < ROWS; j++) {
@@ -237,7 +237,7 @@ public class TicTacToe {
         return false;
     }
 
-    boolean isAnyDiagonalComplete(char mark) {
+    private boolean isAnyDiagonalComplete(char mark) {
         return isRightDiagonalCompelte(mark) || isLeftDiagonalComplete(mark);
     }
 
