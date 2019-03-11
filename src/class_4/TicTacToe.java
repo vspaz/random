@@ -19,7 +19,7 @@ public class TicTacToe {
     private int ROWS = 5;
     private int COLS = 5;
     private int winningSequence = 4;
-    private char[][] grid = new char[COLS][ROWS];
+    private char[][] grid = new char[ROWS][COLS];
 
     private char USER_MARK = 'X';
     private char AI_MARK = 'O';
@@ -64,7 +64,7 @@ public class TicTacToe {
         return row < 0 || col < 0 || row > ROWS - 1 || col > COLS - 1;
     }
 
-    private boolean isCellFree(int col, int row) {
+    private boolean isCellFree(int row, int col) {
         if (isOutOfBound(row, col)) {
             System.out.println(String.format("row %d col %d are out of bound", row, col));
             return false;
@@ -76,7 +76,7 @@ public class TicTacToe {
         Move move;
         do {
             move = getMove(playerType);
-        } while (!isCellFree(move.col, move.row));
+        } while (!isCellFree(move.row, move.col));
         markCell(move);
     }
 
@@ -89,14 +89,14 @@ public class TicTacToe {
     }
 
     private Move getRandomAIMove() {
-        return new Move(getRandNum(COLS - 1), getRandNum(ROWS - 1), AI_MARK);
+        return new Move(getRandNum(ROWS - 1), getRandNum(COLS - 1), AI_MARK);
     }
 
 
     private Move getLeftDiogonalMove() {
         // exclude lower & upper bounds.
-        for (int i = 1; i < COLS - 1; i++) {
-            for (int j = 1; j < ROWS - 1; j++) {
+        for (int i = 1; i < ROWS - 1; i++) {
+            for (int j = 1; j < COLS - 1; j++) {
                 if (i == j && grid[i][j] == EMPTY_MARK) {
                     return new Move(i, j, AI_MARK);
                 }
@@ -106,8 +106,8 @@ public class TicTacToe {
     }
 
     private Move getRightDiagonalMove() {
-        for (int i = COLS - 1; i > 1; i--) {
-            for (int j = ROWS - 1; j > 1; j--) {
+        for (int i = ROWS - 1; i > 1; i--) {
+            for (int j = COLS - 1; j > 1; j--) {
                 if (i == j && grid[i][j] == EMPTY_MARK) {
                     return new Move(i, j, AI_MARK);
                 }
@@ -120,10 +120,10 @@ public class TicTacToe {
         switch (prevAIMove) {
             case 0:
                 prevAIMove++;
-                return new Move(userLastMove.col, getRandNum(ROWS - 1), AI_MARK);
+                return new Move(userLastMove.row, getRandNum(COLS - 1), AI_MARK);
             case 1:
                 prevAIMove++;
-                return new Move(getRandNum(COLS - 1), userLastMove.row, AI_MARK);
+                return new Move(getRandNum(ROWS - 1), userLastMove.col, AI_MARK);
             case 2:
                 prevAIMove++;
                 return getLeftDiogonalMove();
@@ -171,7 +171,7 @@ public class TicTacToe {
     }
 
     private boolean isAnyRowComplete(char mark) {
-        for (int i = 0; i < COLS; i++) {
+        for (int i = 0; i < ROWS; i++) {
             if (isRowComplete(grid[i], mark)) {
                 return true;
             }
@@ -194,7 +194,7 @@ public class TicTacToe {
     }
 
     private boolean isAnyColumComplete(char mark) {
-        for (int i = 0; i < ROWS; i++) {
+        for (int i = 0; i < COLS; i++) {
             if (isColumnComplete(i, mark)) {
                 return true;
             }
@@ -204,8 +204,8 @@ public class TicTacToe {
 
     private boolean isRightDiagonalCompelte(char mark) {
         int count = 0;
-        for (int i = 0; i < COLS; i++) {
-            for (int j = 0; j < ROWS; j++) {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
                 if (i == j) {
                     if (grid[i][j] == mark) {
                         if (isWinSequenceAchieved(++count)) {
@@ -222,8 +222,8 @@ public class TicTacToe {
 
     private boolean isLeftDiagonalComplete(char mark) {
         int count = 0;
-        for (int i = 0; i < COLS; i++) {
-            for (int j = 0; j < ROWS; j++) {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
                 if (i + j == ROWS - 1)
                     if (grid[i][j] == mark) {
                         if (isWinSequenceAchieved(++count)) {
