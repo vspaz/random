@@ -50,22 +50,20 @@ public class StringUtilsTest {
 
     @Test
     public void testStringOfOneChar() {
-        assertEquals(
-                StringUtils.punctuate("A"), "A.");
+        assertEquals(StringUtils.punctuate("A"), "A.");
     }
 
     @Test
     public void testEmptyString() {
-        assertEquals(
-                StringUtils.punctuate(""), "");
+        assertEquals(StringUtils.punctuate(""), "");
     }
 
     @Test
     public void testSingleCharWithPadding() {
         assertEquals(
-                StringUtils.punctuate("             M             "), "M.");
+                StringUtils.punctuate("             M             "),
+                "M.");
     }
-
 
     @Test
     public void testGetFirstNonEmptyCharIndex() {

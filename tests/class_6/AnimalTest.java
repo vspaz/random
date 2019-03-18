@@ -23,8 +23,6 @@ public class AnimalTest {
 
         beast.setJumpHeight(5);
         assertEquals(beast.jump(10), "Beast can't jump 10.00 meters. :-(");
-
-
     }
 
     @Test
@@ -35,14 +33,14 @@ public class AnimalTest {
 
         beast.setRunDistance(198);
         assertEquals(beast.run(199), "Beast can't run 199.00 meters. :-(");
-
     }
 
     @Test
     public void testGetAbility() {
         Animal beast = getBeast();
         beast.setJumpHeight(10);
-        assertEquals(beast.getAbility(10, 5, "crawl"), "Beast crawl 5.00 meters. weeeeee!!!!");
-
+        assertEquals(
+                beast.getAbility(10, 5, "crawl"),
+                "Beast crawl 5.00 meters. weeeeee!!!!");
     }
 }
