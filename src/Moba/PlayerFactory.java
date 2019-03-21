@@ -15,7 +15,7 @@ class PlayerFactory {
                 hero = new Warrior(count, 300, 35);
                 break;
             default:
-                hero = new Warrior(count, 300, 35); // default is warrior;
+                hero = new Warrior(count, 300, 35);
         }
         count++;
         return hero;

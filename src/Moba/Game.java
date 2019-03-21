@@ -5,25 +5,23 @@ import java.util.Random;
 public class Game {
     private static int count = 0;
     private Random random = new Random();
+
     Hero[] createTeam(int playerCount, int team) {
         Hero[] heroes = new Hero[playerCount];
         Hero hero;
         for (int i = 0; i < playerCount; i++) {
-            int playerType = random.nextInt(Player.count + 1) + 1;
-            hero = PlayerFactory.getPlayer(playerType);
+            hero = PlayerFactory.getPlayer(getRandomType());
             hero.setTeam(team);
             heroes[i] = hero;
         }
         return heroes;
     }
 
-    Hero getAlivePlayer(Hero[] players, int num) {
-        Hero player = players[num];
-        if (player.isAlive ) {
-            return player;
+    public Hero getAlivePlayer(Hero[] players, int num) {
+        if (players[num].isAlive) {
+            return players[num];
         }
-        for (int i = 0; i < players.length; i++) {
-            player = players[i];
+        for (Hero player : players) {
             if (player.isAlive) {
                 return player;
             }
@@ -31,14 +29,14 @@ public class Game {
         return null;
     }
 
-    int getType() {
-        return random.nextInt(Player.count);
+    public int getRandomType() {
+        return random.nextInt(1000) % Player.count;
     }
 
-    void makeMove(Hero offender, Hero defender, Hero[] team) {
-        System.out.println(String.format("============ fight %s =============", count++));
+    public void makeMove(Hero offender, Hero defender, Hero[] team) {
+        System.out.println(String.format("============= fight %s ==============", count++));
         if (offender instanceof Healer) {
-            Hero teammate = getAlivePlayer(team, getType());
+            Hero teammate = getAlivePlayer(team, getRandomType());
             offender.heal(teammate);
         } else {
             offender.hit(defender);
@@ -47,7 +45,12 @@ public class Game {
         defender.info();
     }
 
-    void printResults(Hero[] team, int teamName) {
+    private void printSeparator() {
+        System.out.println("======================================");
+    }
+
+    public void printResults(Hero[] team, int teamName) {
+        printSeparator();
         boolean isWin = false;
         for (Hero player : team) {
             if (player.isAlive) {
@@ -60,6 +63,5 @@ public class Game {
             ));
         }
         System.out.println(String.format("Team %d %s!", teamName, isWin ? "win" : "lose"));
-        System.out.println("======================================");
     }
 }

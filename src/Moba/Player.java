@@ -1,9 +1,9 @@
 package Moba;
 
 public interface Player {
-    int ASSASSIN = 1;
-    int HEALER   = 2;
-    int WARRIOR  = 3;
+    int ASSASSIN = 0;
+    int HEALER   = 1;
+    int WARRIOR  = 2;
 
     int count = 3;
 }
