@@ -2,7 +2,7 @@ package class_222;
 
 public class TestExceptions {
     public static void main(String[] args) {
-        System.out.println(CustomArrayUtil.getTotal(CustomArrayUtil.getFrouByFourMatrix()));
+        System.out.println(CustomArrayUtil.getTotal(CustomArrayUtil.getFourByFourMatrix()));
         try {
 
             CustomArrayUtil.getTotal(CustomArrayUtil.getSmallerSizedMatrix());
@@ -16,7 +16,7 @@ public class TestExceptions {
             System.out.println(err.getMessage());
         }
 
-        String[][][][] nums = CustomArrayUtil.getFrouByFourMatrix();
+        String[][][][] nums = CustomArrayUtil.getFourByFourMatrix();
         nums[0][0][0][3] = "junkvalue";
         try {
             CustomArrayUtil.getTotal(nums);

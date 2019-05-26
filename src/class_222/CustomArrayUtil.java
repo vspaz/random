@@ -14,7 +14,7 @@ public class CustomArrayUtil {
                             total += Integer.parseInt(matrix[i][j][k][l]);
                         } catch (NumberFormatException err) {
                             throw new MyArrayDataException(
-                                    String.format("Failed to parse value from cell %d %d %d %d", i, j, k, l),
+                                    String.format("Failed to parse value from cell %d %d %d %d.", i, j, k, l),
                                     err);
                         }
                     }
@@ -27,12 +27,12 @@ public class CustomArrayUtil {
     // required for the innermost array size validation; sizes of outer arrays are checked at compilation stage.
     static void validateSize(int actualSize, int requiredSize) throws MyArraySizeException {
         if (actualSize != requiredSize) {
-            throw new MyArraySizeException("Wrong matrix demension; 4x4 size is required.");
+            throw new MyArraySizeException("Wrong matrix dimension; 4x4 size is required.");
         }
     }
 
     // some helpers to generate matrices for testing and such.
-    static String[][][][] getFrouByFourMatrix() {
+    static String[][][][] getFourByFourMatrix() {
         String[][][][] matrix = new String[requiredSize][requiredSize][requiredSize][requiredSize];
 
         for (int i = 0; i < requiredSize; i++) {

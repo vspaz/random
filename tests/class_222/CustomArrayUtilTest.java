@@ -8,7 +8,7 @@ public class CustomArrayUtilTest {
 
     @Test
     public void testGetTotal() {
-        String[][][][] nums = CustomArrayUtil.getFrouByFourMatrix();
+        String[][][][] nums = CustomArrayUtil.getFourByFourMatrix();
         assertEquals(384, CustomArrayUtil.getTotal(nums));
     }
 
@@ -19,7 +19,7 @@ public class CustomArrayUtilTest {
 
     @Test
     public void testMyArrayDataExceptiondOnFailureToParseInt() {
-        String[][][][] nums = CustomArrayUtil.getFrouByFourMatrix();
+        String[][][][] nums = CustomArrayUtil.getFourByFourMatrix();
         nums[0][0][0][0] = "foobar";
         assertThrows(MyArrayDataException.class, () -> CustomArrayUtil.getTotal(nums));
     }
