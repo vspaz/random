@@ -10,7 +10,7 @@ public class WordCounter {
         this.words = words;
     }
 
-    private void getWordToCount() {
+    private void setWordToCount() {
         for (String word : words) {
             if (wordToCount.containsKey(word)) {
                 wordToCount.put(word, wordToCount.get(word) + 1);
@@ -20,9 +20,10 @@ public class WordCounter {
         }
     }
 
-    private void processArray() {
+    private void updateWordToCount() {
+        // compute wordToCount once and cache it;
         if (wordToCount.isEmpty()) {
-            getWordToCount();
+            setWordToCount();
         }
     }
 
@@ -30,8 +31,8 @@ public class WordCounter {
         System.out.println("==========================================================================================");
     }
 
-    void printCount() {
-        processArray();
+    public void printCount() {
+        updateWordToCount();
         System.out.println(String.format("%-5s  %s", "word", "count"));
         for (Map.Entry<String, Integer> wordCountPair : wordToCount.entrySet()) {
             System.out.println(String.format("%-6s => %d", wordCountPair.getKey(), wordCountPair.getValue()));
@@ -39,8 +40,8 @@ public class WordCounter {
         printSep();
     }
 
-    void printUniq() {
-        processArray();
+    public void printUniq() {
+        updateWordToCount();
         System.out.println(String.format("Array has %d unique elements out of %d", wordToCount.size(), words.length));
         for (Map.Entry<String, Integer> wordCountPair : wordToCount.entrySet()) {
             System.out.println(wordCountPair.getKey());
